@@ -82,7 +82,6 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    
     /// /weather にGETリクエストを行う
     ///
     /// - Parameter cityName: 取得したい都市の名前(APIのドキュメント参照)
