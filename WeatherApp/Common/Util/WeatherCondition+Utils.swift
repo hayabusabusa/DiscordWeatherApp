@@ -19,7 +19,7 @@ struct WeatherConditionUtils {
         case "Rain":
             return UIImage(named: "ic_rainy")
         case "Snow":
-            return nil
+            return UIImage(named: "ic_snow")
         case "Clear":
             return UIImage(named: "ic_sunny")
         case "Clouds":
