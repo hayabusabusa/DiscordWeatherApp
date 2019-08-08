@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WeatherModel: Decodable {
+struct CurrentWeather: Decodable {
     let dt: Double
     let main: Main
     let weather: [Weather]
