@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71DF72F522FDAF560026A295 /* HomeModelSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF72F422FDAF560026A295 /* HomeModelSimple.swift */; };
 		A40DA72F22FAC7890094A047 /* WeatherCondition+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40DA72E22FAC7890094A047 /* WeatherCondition+Utils.swift */; };
 		A40DA73122FACB130094A047 /* TemperatureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40DA73022FACB130094A047 /* TemperatureUtils.swift */; };
 		A41E8A7B22FC108A0036B835 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41E8A7A22FC108A0036B835 /* HomeModel.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		71DF72F422FDAF560026A295 /* HomeModelSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModelSimple.swift; sourceTree = "<group>"; };
 		A40DA72E22FAC7890094A047 /* WeatherCondition+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherCondition+Utils.swift"; sourceTree = "<group>"; };
 		A40DA73022FACB130094A047 /* TemperatureUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUtils.swift; sourceTree = "<group>"; };
 		A41E8A7A22FC108A0036B835 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				A41E8A7C22FC109A0036B835 /* Network */,
 				A41E8A7922FC10650036B835 /* Response */,
 				A41E8A7A22FC108A0036B835 /* HomeModel.swift */,
+				71DF72F422FDAF560026A295 /* HomeModelSimple.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				A467D66722FAAAEC00557B2D /* GradientView.swift in Sources */,
 				A41E8A8022FC1DE30036B835 /* APIError.swift in Sources */,
 				A40DA72F22FAC7890094A047 /* WeatherCondition+Utils.swift in Sources */,
+				71DF72F522FDAF560026A295 /* HomeModelSimple.swift in Sources */,
 				A41E8A7B22FC108A0036B835 /* HomeModel.swift in Sources */,
 				A467D63822FA8C9500557B2D /* AppDelegate.swift in Sources */,
 				A467D66222FA976E00557B2D /* CurrentWeather.swift in Sources */,

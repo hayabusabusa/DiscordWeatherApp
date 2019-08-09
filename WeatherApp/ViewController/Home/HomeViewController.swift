@@ -26,6 +26,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Properties
     
     private let model: HomeModel = HomeModel()
+    //private let model: HomeModelSimple = HomeModelSimple()
     private let cityName: String = "Toyota,jp" // 天気を取得する都市の名前
     
     // MARK: - Lifecycle
