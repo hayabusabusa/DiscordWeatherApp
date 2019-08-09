@@ -22,6 +22,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var maxLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var reloadButton: UIButton!
     
     // MARK: - Properties
     
