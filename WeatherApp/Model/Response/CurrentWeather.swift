@@ -13,6 +13,13 @@ struct CurrentWeather: Decodable {
     let main: Main
     let weather: [Weather]
     let wind: Wind
+    
+    init(dt: Double = 0.0, main: Main = Main(), weather: [Weather] = [], wind: Wind = Wind()) {
+        self.dt = dt
+        self.main = main
+        self.weather = weather
+        self.wind = wind
+    }
 }
 
 struct Main: Decodable {
@@ -29,6 +36,14 @@ struct Main: Decodable {
         case pressure
         case humidity
     }
+    
+    init(temp: Double = 0.0, tempMin: Double = 0.0, tempMax: Double = 0.0, pressure: Double = 0.0, humidity: Double = 0.0) {
+        self.temp = temp
+        self.tempMin = tempMin
+        self.tempMax = tempMax
+        self.pressure = pressure
+        self.humidity = humidity
+    }
 }
 
 struct Weather: Decodable {
@@ -39,9 +54,19 @@ struct Weather: Decodable {
         case main
         case desc = "description"
     }
+    
+    init(main: String = "", desc: String = "") {
+        self.main = main
+        self.desc = desc
+    }
 }
 
 struct Wind: Decodable {
     let speed: Double
     let deg: Double
+    
+    init(speed: Double = 0.0, deg: Double = 0.0) {
+        self.speed = speed
+        self.deg = deg
+    }
 }

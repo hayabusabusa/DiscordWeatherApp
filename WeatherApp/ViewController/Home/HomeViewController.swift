@@ -67,9 +67,9 @@ extension HomeViewController {
         windLabel.text = String(format: "%.1fmph", weather.wind.speed)
         humidityLabel.text = "\(weather.main.humidity)%"
         
-        if let condition = weather.weather.first?.main {
-            landscapeImageView.image = WeatherConditionUtils.conditionToLandscapeImage(condition)
-            iconImageView.image = WeatherConditionUtils.conditionToIconImage(condition)
+        if let condition = weather.weather.first {
+            landscapeImageView.image = WeatherConditionUtils.weatherToLandscapeImage(condition)
+            iconImageView.image = WeatherConditionUtils.weatherToIconImage(condition)
         }
         
         // alphaの値を1に戻すようにアニメーションさせる
@@ -85,12 +85,12 @@ extension HomeViewController {
 
 extension HomeViewController: HomeModelDelegate {
     
-    func onSuccess(currentWeather: CurrentWeather) {
+    func onUpdated(currentWeather: CurrentWeather) {
         updateUI(weather: currentWeather)
     }
     
     func onError(error: Error) {
-        let alert = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }

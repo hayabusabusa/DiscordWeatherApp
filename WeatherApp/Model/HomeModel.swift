@@ -9,7 +9,7 @@
 import Foundation
 
 protocol HomeModelDelegate: class {
-    func onSuccess(currentWeather: CurrentWeather)
+    func onUpdated(currentWeather: CurrentWeather)
     func onError(error: Error)
 }
 
@@ -18,6 +18,11 @@ final class HomeModel {
     private let client: APIClient
     
     weak var delegate: HomeModelDelegate?
+    var currentWeather: CurrentWeather = CurrentWeather() {
+        didSet{
+            self.delegate?.onUpdated(currentWeather: currentWeather)
+        }
+    }
     
     init(client: APIClient = APIClient.shered) {
         self.client = client
@@ -37,7 +42,7 @@ final class HomeModel {
                     self.delegate?.onError(error: error)
                 }
                 if let response = response {
-                    self.delegate?.onSuccess(currentWeather: response)
+                    self.currentWeather = response
                 }
             }
         }
