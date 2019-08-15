@@ -8,12 +8,13 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: BaseViewController {
     
     // MARK: - IBOutlet
     
     @IBOutlet weak var layoutHeader: UIView!
     @IBOutlet weak var layoutContents: UIView!
+    @IBOutlet weak var layoutTemps: UIView!
     @IBOutlet weak var landscapeImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -42,6 +43,7 @@ final class HomeViewController: UIViewController {
         // 更新の時にもalphaの値を0にするのを忘れずに
         layoutHeader.alpha = 0
         layoutContents.alpha = 0
+        layoutTemps.alpha = 0
         fetchCurrentWeather(by: cityName)
     }
 }
@@ -51,19 +53,34 @@ final class HomeViewController: UIViewController {
 extension HomeViewController {
     
     func setupUI() {
-        // ふわっと表示させたいのでalpha(透明度)の値をアニメーションさせる
-        // 一旦0に設定して非同期の処理が完了後に1にするアニメーションを行う
+        // View
         layoutHeader.alpha = 0
         layoutContents.alpha = 0
+        layoutTemps.alpha = 0
+        
+        // CollectionView
+        guard let tempCollectionVC = UIStoryboard(name: "HomeTemperatureCollectionViewController", bundle: nil).instantiateInitialViewController() as? HomeTemperatureCollectionViewController else {
+            return
+        }
+        layoutTemps.addSubview(tempCollectionVC.view)
+        addChild(tempCollectionVC)
+        tempCollectionVC.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            tempCollectionVC.view.topAnchor.constraint(equalTo: layoutTemps.topAnchor, constant: 0),
+            tempCollectionVC.view.leadingAnchor.constraint(equalTo: layoutTemps.leadingAnchor, constant: 0),
+            tempCollectionVC.view.trailingAnchor.constraint(equalTo: layoutTemps.trailingAnchor, constant: 0),
+            tempCollectionVC.view.bottomAnchor.constraint(equalTo: layoutTemps.bottomAnchor, constant: 0)
+            ])
     }
     
-    func updateUI(weather: WeatherModel) {
-        temperatureLabel.text = String(format: "%.1f°", TemperatureUtils.fahrenheitToCelsius(weather.main.temp))
+    func updateUI(weather: CurrentWeather) {
+        temperatureLabel.text = String(format: "%.1f", TemperatureUtils.fahrenheitToCelsius(weather.main.temp))
         weatherLabel.text = weather.weather.first?.desc ?? "unknown"
-        minLabel.text = String(format: "%.1f°", TemperatureUtils.fahrenheitToCelsius(weather.main.tempMin))
-        maxLabel.text = String(format: "%.1f°", TemperatureUtils.fahrenheitToCelsius(weather.main.tempMax))
-        windLabel.text = String(format: "%.1fmph", weather.wind.speed)
-        humidityLabel.text = "\(weather.main.humidity)%"
+        minLabel.text = String(format: "%.1f", TemperatureUtils.fahrenheitToCelsius(weather.main.tempMin))
+        maxLabel.text = String(format: "%.1f", TemperatureUtils.fahrenheitToCelsius(weather.main.tempMax))
+        windLabel.text = String(format: "%.1f", weather.wind.speed)
+        humidityLabel.text = "\(weather.main.humidity)"
         
         if let condition = weather.weather.first?.main {
             landscapeImageView.image = WeatherConditionUtils.conditionToLandscapeImage(condition)
@@ -72,9 +89,10 @@ extension HomeViewController {
         
         // alphaの値を1に戻すようにアニメーションさせる
         // これで浮かび上がってくるようなアニメーションになる
-        UIView.animate(withDuration: 1.0) { [weak self] in
+        UIView.animate(withDuration: 1.4) { [weak self] in
             self?.layoutHeader.alpha = 1
             self?.layoutContents.alpha = 1
+            self?.layoutTemps.alpha = 1
         }
     }
 }
@@ -123,7 +141,7 @@ extension HomeViewController {
                     print(json)
                     
                     // 定義していたDecodable準拠のモデルオブジェクトにパースする
-                    let weather = try JSONDecoder().decode(WeatherModel.self, from: data)
+                    let weather = try JSONDecoder().decode(CurrentWeather.self, from: data)
                     
                     // 非同期の処理はメインスレッドでは行われないので、
                     // UIの更新処理は必ずメインスレッドで行うように指定する。
