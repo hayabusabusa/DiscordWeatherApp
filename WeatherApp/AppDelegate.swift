@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let rootVC = UIStoryboard(name: "HomeViewController", bundle: nil).instantiateInitialViewController() ?? UIViewController()
+        let rootVC = HomeViewController.instance(viewModel: HomeViewModel())
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = rootVC

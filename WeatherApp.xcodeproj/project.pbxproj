@@ -175,8 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				71FF01222305C4430071F9DF /* ViewModelType.swift */,
-				71FF010B230591200071F9DF /* HomeViewModel.swift */,
-				71FF010D2305912E0071F9DF /* HomeTemperatureViewModel.swift */,
+				71FF012A23068EF60071F9DF /* Home */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -219,6 +218,15 @@
 				71FF011A2305B0D60071F9DF /* ForecastResponseJson.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		71FF012A23068EF60071F9DF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				71FF010B230591200071F9DF /* HomeViewModel.swift */,
+				71FF010D2305912E0071F9DF /* HomeTemperatureViewModel.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A40DA72A22FAC62E0094A047 /* Util */ = {
@@ -629,7 +637,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NFHBTKRJJM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -639,7 +647,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = yamadash.WeatherApp;
+				PRODUCT_BUNDLE_IDENTIFIER = Shunya.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -651,7 +659,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NFHBTKRJJM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -661,7 +669,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = yamadash.WeatherApp;
+				PRODUCT_BUNDLE_IDENTIFIER = Shunya.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

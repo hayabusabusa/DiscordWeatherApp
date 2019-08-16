@@ -27,29 +27,28 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let cityName: String = "Toyota,jp" // 天気を取得する都市の名前
+    private var viewModel: HomeViewModel!
     
     // MARK: - Lifecycle
     
-    static func instance() -> HomeViewController {
+    static func instance(viewModel: HomeViewModel) -> HomeViewController {
         let homeViewController = HomeViewController.newInstance()
+        homeViewController.viewModel = viewModel
         return homeViewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetchCurrentWeather(by: cityName)
+        bindViewModel()
     }
     
     // MARK: - IBAction
     
     @IBAction func tapReload(_ sender: UIButton) {
-        // 更新の時にもalphaの値を0にするのを忘れずに
-        layoutHeader.alpha = 0
-        layoutContents.alpha = 0
-        layoutTemps.alpha = 0
-        fetchCurrentWeather(by: cityName)
+//        layoutHeader.alpha = 0
+//        layoutContents.alpha = 0
+//        layoutTemps.alpha = 0
     }
 }
 
@@ -77,6 +76,17 @@ extension HomeViewController {
             ])
     }
     
+    func bindViewModel() {
+        let input = type(of: viewModel).Input()
+        let output = viewModel.transform(input: input)
+        output.currentWeather
+            .drive(onNext: { [weak self] result in
+                guard let self = self else { return }
+                self.updateUI(weather: result)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
     func updateUI(weather: CurrentWeather) {
         temperatureLabel.text = String(format: "%.1f", TemperatureUtils.fahrenheitToCelsius(weather.main.temp))
         weatherLabel.text = weather.weather.first?.desc ?? "unknown"
@@ -90,76 +100,10 @@ extension HomeViewController {
             iconImageView.image = WeatherConditionUtils.conditionToIconImage(condition)
         }
         
-        // alphaの値を1に戻すようにアニメーションさせる
-        // これで浮かび上がってくるようなアニメーションになる
         UIView.animate(withDuration: 1.4) { [weak self] in
             self?.layoutHeader.alpha = 1
             self?.layoutContents.alpha = 1
             self?.layoutTemps.alpha = 1
         }
-    }
-}
-
-// MARK: - URLSession
-
-extension HomeViewController {
-    
-    /// /weather にGETリクエストを行う
-    ///
-    /// - Parameter cityName: 取得したい都市の名前(APIのドキュメント参照)
-    func fetchCurrentWeather(by cityName: String) {
-        // リクエストするためのURLを作成
-        // まずはベースURLにパス(/weather)を追加
-        var components = URLComponents(string: Configuration.baseUrl + "/weather")
-        
-        // パラメーターを作成してURLにクエリとして追加(クエリに関してもAPIのドキュメント参照)
-        // q ... 引数から受け取った天気を取得したい街, units... 単位のオプション ,APPID ... 発行してもらったAPIKey
-        let cityNameQuery = URLQueryItem(name: "q", value: cityName)
-        let unitsQuery = URLQueryItem(name: "units", value: "imperial")
-        let apiKeyQuery = URLQueryItem(name: "APPID", value: Configuration.apiKey)
-        components?.queryItems = [cityNameQuery, unitsQuery, apiKeyQuery]
-        
-        // 作成したURLがオプショナルなので、きちんとURLとして取得できるかアンラップ
-        guard let url = components?.url else {
-            return
-        }
-        
-        // GETリクエストをするためのタスクを作成する
-        // completionHandlerのdataにサーバーから返ってきたJsonが入っている
-        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
-            // [weak self]... 関数のキャプチャによりselfが循環参照になってしまうのを防止
-            
-            // 通信エラーがあった場合は終了
-            if let error = error {
-                print(error)
-                return
-            }
-            
-            // レスポンスがきちんとあるかをアンラップして確認
-            if let data = data {
-                do {
-                    // 確認用
-                    // 返ってきたJsonをdataからjsonの形式に直してコンソールに表示させる
-                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    print(json)
-                    
-                    // 定義していたDecodable準拠のモデルオブジェクトにパースする
-                    let weather = try JSONDecoder().decode(CurrentWeather.self, from: data)
-                    
-                    // 非同期の処理はメインスレッドでは行われないので、
-                    // UIの更新処理は必ずメインスレッドで行うように指定する。
-                    DispatchQueue.main.async {
-                        self?.updateUI(weather: weather)
-                    }
-                } catch let error {
-                    print(error)
-                }
-            } else {
-                print("Responsed data is empty or something wrong.")
-            }
-        }
-        
-        // 作成したタスクをスタートさせる
-        task.resume()
     }
 }

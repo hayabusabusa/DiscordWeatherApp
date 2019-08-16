@@ -34,7 +34,7 @@ class HomeTemperatureCollectionViewCell: UICollectionViewCell {
     
     func setupCell(dt: Double, temp: Double, weather: Weather?) {
         timeLabel.text = TimestampUtil.hourString(dt)
-        tempLabel.text = "\(temp)°"
+        tempLabel.text = String(format: "%.1f°", TemperatureUtils.fahrenheitToCelsius(temp))
         
         if let weather = weather {
             iconImageView.image = WeatherConditionUtils.weatherToIconImage(weather)
