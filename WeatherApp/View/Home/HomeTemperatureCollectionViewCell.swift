@@ -27,7 +27,17 @@ class HomeTemperatureCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        iconImageView.tintColor = .lightGray
     }
-
+    
+    // MARK: - UI
+    
+    func setupCell(dt: Double, temp: Double, weather: Weather?) {
+        timeLabel.text = TimestampUtil.hourString(dt)
+        tempLabel.text = "\(temp)°"
+        
+        if let weather = weather {
+            iconImageView.image = WeatherConditionUtils.weatherToIconImage(weather)
+        }
+    }
 }

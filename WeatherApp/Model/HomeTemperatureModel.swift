@@ -7,3 +7,21 @@
 //
 
 import Foundation
+import Moya
+import RxMoya
+import RxSwift
+
+protocol HomeTemperatureModel {
+    func fetchForecast(params: ForecastParams) -> Single<ForecastWeather>
+}
+
+struct HomeTemperatureModelImpl: HomeTemperatureModel {
+    
+    private let provider: MoyaProvider<WeatherAppAPI> = WeatherAppAPIProvider.shered
+    
+    func fetchForecast(params: ForecastParams) -> Single<ForecastWeather> {
+        return provider.rx.request(.forecast(with: params))
+            .filterSuccessfulStatusCodes()
+            .map(ForecastWeather.self)
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  TemperatureUtils.swift
+//  Temperature+Utils.swift
 //  WeatherApp
 //
 //  Created by Yamada Shunya on 2019/08/07.

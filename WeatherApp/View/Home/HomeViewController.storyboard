@@ -22,8 +22,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ft-XM-1tN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="al1-Me-l2G">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="854"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="al1-Me-l2G">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="902"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4Q-aG-HkS" userLabel="Layout Header">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
@@ -52,7 +52,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sv9-s7-DlY">
-                                                        <rect key="frame" x="24" y="26" width="201" height="45.5"/>
+                                                        <rect key="frame" x="24" y="44" width="201" height="45.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                                                     <constraint firstItem="2fd-XN-Rt6" firstAttribute="leading" secondItem="k4Q-aG-HkS" secondAttribute="leading" id="4YL-jk-yMK"/>
                                                     <constraint firstAttribute="trailing" secondItem="4nE-6X-EaX" secondAttribute="trailing" constant="24" id="748-jE-9XA"/>
                                                     <constraint firstAttribute="trailing" secondItem="2fd-XN-Rt6" secondAttribute="trailing" id="N1Q-NP-jNR"/>
-                                                    <constraint firstItem="Sv9-s7-DlY" firstAttribute="top" secondItem="k4Q-aG-HkS" secondAttribute="top" constant="26" id="NWY-95-Gjj"/>
+                                                    <constraint firstItem="Sv9-s7-DlY" firstAttribute="top" secondItem="k4Q-aG-HkS" secondAttribute="top" constant="44" id="NWY-95-Gjj"/>
                                                     <constraint firstAttribute="bottom" secondItem="4nE-6X-EaX" secondAttribute="bottom" constant="32" id="OoG-Xk-HWw"/>
                                                     <constraint firstItem="2fd-XN-Rt6" firstAttribute="height" relation="greaterThanOrEqual" secondItem="k4Q-aG-HkS" secondAttribute="height" id="Vf2-bF-suD"/>
                                                     <constraint firstItem="Vc9-01-U8X" firstAttribute="centerX" secondItem="4nE-6X-EaX" secondAttribute="centerX" id="hLh-6n-2BB"/>
@@ -91,7 +91,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-KV-ylH" userLabel="Layout Contents">
-                                                <rect key="frame" x="0.0" y="422" width="414" height="216"/>
+                                                <rect key="frame" x="0.0" y="430" width="414" height="216"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9ny-0s-Dgc">
                                                         <rect key="frame" x="24" y="8" width="366" height="200"/>
@@ -320,14 +320,14 @@ temperature</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9i-eY-nmb" userLabel="Layout Temps">
-                                                <rect key="frame" x="0.0" y="646" width="414" height="156"/>
+                                                <rect key="frame" x="0.0" y="662" width="414" height="156"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="156" id="t7b-g5-gZn"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7DI-nq-sYv" userLabel="Layout Buttons">
-                                                <rect key="frame" x="0.0" y="810" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="834" width="414" height="68"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UF-NR-HMs">
                                                         <rect key="frame" x="24" y="0.0" width="366" height="44"/>
@@ -349,9 +349,9 @@ temperature</string>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="2UF-NR-HMs" firstAttribute="top" secondItem="7DI-nq-sYv" secondAttribute="top" id="7hW-Uq-oTH"/>
-                                                    <constraint firstAttribute="height" constant="44" id="I2F-IL-Vmr"/>
+                                                    <constraint firstAttribute="height" constant="68" id="I2F-IL-Vmr"/>
                                                     <constraint firstItem="2UF-NR-HMs" firstAttribute="leading" secondItem="7DI-nq-sYv" secondAttribute="leading" constant="24" id="Usr-VT-AX1"/>
-                                                    <constraint firstAttribute="bottom" secondItem="2UF-NR-HMs" secondAttribute="bottom" id="aEV-Lo-TYc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2UF-NR-HMs" secondAttribute="bottom" constant="24" id="aEV-Lo-TYc"/>
                                                     <constraint firstAttribute="trailing" secondItem="2UF-NR-HMs" secondAttribute="trailing" constant="24" id="anu-0l-CQI"/>
                                                 </constraints>
                                             </view>

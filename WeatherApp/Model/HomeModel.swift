@@ -7,3 +7,21 @@
 //
 
 import Foundation
+import Moya
+import RxMoya
+import RxSwift
+
+protocol HomeModel {
+    func fetchCurrent(params: CurrentParams) -> Single<CurrentWeather>
+}
+
+struct HomeModelImpl: HomeModel {
+    
+    private let provider: MoyaProvider<WeatherAppAPI> = WeatherAppAPIProvider.shered
+    
+    func fetchCurrent(params: CurrentParams) -> Single<CurrentWeather> {
+        return provider.rx.request(.current(with: params))
+            .filterSuccessfulStatusCodes()
+            .map(CurrentWeather.self)
+    }
+}

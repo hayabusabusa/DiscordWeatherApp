@@ -31,6 +31,11 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Lifecycle
     
+    static func instance() -> HomeViewController {
+        let homeViewController = HomeViewController.newInstance()
+        return homeViewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -59,9 +64,7 @@ extension HomeViewController {
         layoutTemps.alpha = 0
         
         // CollectionView
-        guard let tempCollectionVC = UIStoryboard(name: "HomeTemperatureCollectionViewController", bundle: nil).instantiateInitialViewController() as? HomeTemperatureCollectionViewController else {
-            return
-        }
+        let tempCollectionVC = HomeTemperatureCollectionViewController.instance(viewModel: HomeTemperatureViewModel())
         layoutTemps.addSubview(tempCollectionVC.view)
         addChild(tempCollectionVC)
         tempCollectionVC.didMove(toParent: self)

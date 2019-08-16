@@ -8,17 +8,41 @@
 
 import UIKit
 
-final class HomeTemperatureCollectionViewController: UIViewController {
+final class HomeTemperatureCollectionViewController: BaseViewController {
     
     // MARK: - IBOutlet
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    // MARK: - Properties
+    
+    private var viewModel: HomeTemperatureViewModel!
+    private var dataSource: ForecastWeather = .init(list: []) {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+
     // MARK: - Lifecycle
+    
+    static func instance(viewModel: HomeTemperatureViewModel) -> HomeTemperatureCollectionViewController {
+        let homeTemperatureCollectionViewController = HomeTemperatureCollectionViewController.newInstance()
+        homeTemperatureCollectionViewController.viewModel = viewModel
+        return homeTemperatureCollectionViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
+        bindViewModel()
+    }
+}
+
+// MARK: - UI
+
+extension HomeTemperatureCollectionViewController {
+    
+    func setupUI() {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +57,17 @@ final class HomeTemperatureCollectionViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: false)
         collectionView.register(HomeTemperatureCollectionViewCell.nib, forCellWithReuseIdentifier: HomeTemperatureCollectionViewCell.reuseIdentifier)
     }
+    
+    func bindViewModel() {
+        let input = type(of: viewModel).Input()
+        let output = viewModel.transform(input: input)
+        output.forecastWeather
+            .drive(onNext: { [weak self] result in
+                guard let self = self else { return }
+                self.dataSource = result
+            })
+            .disposed(by: self.disposeBag)
+    }
 }
 
 // MARK: - CollctionView dataSource, delegate
@@ -40,11 +75,13 @@ final class HomeTemperatureCollectionViewController: UIViewController {
 extension HomeTemperatureCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return dataSource.list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTemperatureCollectionViewCell.reuseIdentifier, for: indexPath) as! HomeTemperatureCollectionViewCell
+        let item = dataSource.list[indexPath.row]
+        cell.setupCell(dt: item.dt, temp: item.main.temp, weather: item.weather.first)
         return cell
     }
     

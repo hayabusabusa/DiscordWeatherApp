@@ -10,7 +10,7 @@ import UIKit
 
 class BaseNavigationController: UINavigationController {
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class BaseNavigationController: UINavigationController {
         updateStyle(viewController)
     }
     
-    // MARK: UI
+    // MARK: - UI
     
     private func setupUI() {
         navigationBar.shadowImage = UIImage()
