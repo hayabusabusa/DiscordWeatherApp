@@ -341,9 +341,6 @@ temperature</string>
                                                                 <integer key="value" value="22"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="tapReload:" destination="orB-E8-r6V" eventType="touchUpInside" id="rXu-sp-gA5"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -384,7 +381,6 @@ temperature</string>
                         <outlet property="landscapeImageView" destination="2fd-XN-Rt6" id="qQQ-Sz-19z"/>
                         <outlet property="layoutContents" destination="gyh-KV-ylH" id="3ik-Yv-3xz"/>
                         <outlet property="layoutHeader" destination="k4Q-aG-HkS" id="SrF-YW-umm"/>
-                        <outlet property="layoutTemps" destination="X9i-eY-nmb" id="pBP-Nt-6J2"/>
                         <outlet property="maxLabel" destination="GGn-Hp-Kp7" id="wV9-kF-g4E"/>
                         <outlet property="minLabel" destination="YiD-KI-s2b" id="SKU-8C-6RP"/>
                         <outlet property="reloadButton" destination="2UF-NR-HMs" id="5eo-fM-iCA"/>

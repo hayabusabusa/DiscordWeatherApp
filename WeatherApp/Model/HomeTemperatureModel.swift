@@ -12,15 +12,15 @@ import RxMoya
 import RxSwift
 
 protocol HomeTemperatureModel {
-    func fetchForecast(params: ForecastParams) -> Single<ForecastWeather>
+    func fetchForecast() -> Single<ForecastWeather>
 }
 
 struct HomeTemperatureModelImpl: HomeTemperatureModel {
     
     private let provider: MoyaProvider<WeatherAppAPI> = WeatherAppAPIProvider.shered
     
-    func fetchForecast(params: ForecastParams) -> Single<ForecastWeather> {
-        return provider.rx.request(.forecast(with: params))
+    func fetchForecast() -> Single<ForecastWeather> {
+        return provider.rx.request(.forecast(with: ForecastParams(cityName: "")))
             .filterSuccessfulStatusCodes()
             .map(ForecastWeather.self)
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxCocoa
 
 final class HomeViewController: BaseViewController {
     
@@ -27,11 +28,11 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private var viewModel: HomeViewModel!
+    private var viewModel: HomeWeatherViewModel!
     
     // MARK: - Lifecycle
     
-    static func instance(viewModel: HomeViewModel) -> HomeViewController {
+    static func instance(viewModel: HomeWeatherViewModel) -> HomeViewController {
         let homeViewController = HomeViewController.newInstance()
         homeViewController.viewModel = viewModel
         return homeViewController
@@ -42,14 +43,6 @@ final class HomeViewController: BaseViewController {
         setupUI()
         bindViewModel()
     }
-    
-    // MARK: - IBAction
-    
-    @IBAction func tapReload(_ sender: UIButton) {
-//        layoutHeader.alpha = 0
-//        layoutContents.alpha = 0
-//        layoutTemps.alpha = 0
-    }
 }
 
 // MARK: - UI
@@ -57,13 +50,9 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController {
     
     func setupUI() {
-        // View
-        layoutHeader.alpha = 0
-        layoutContents.alpha = 0
-        layoutTemps.alpha = 0
-        
         // CollectionView
-        let tempCollectionVC = HomeTemperatureCollectionViewController.instance(viewModel: HomeTemperatureViewModel())
+        let tempCollectionVC = HomeTemperatureCollectionViewController
+            .instance(viewModel: HomeTemperatureViewModel(reloadTap: reloadButton.rx.tap.asSignal()))
         layoutTemps.addSubview(tempCollectionVC.view)
         addChild(tempCollectionVC)
         tempCollectionVC.didMove(toParent: self)
@@ -77,7 +66,7 @@ extension HomeViewController {
     }
     
     func bindViewModel() {
-        let input = type(of: viewModel).Input()
+        let input = type(of: viewModel).Input(reloadTap: reloadButton.rx.tap.asSignal())
         let output = viewModel.transform(input: input)
         output.currentWeather
             .drive(onNext: { [weak self] result in
@@ -85,6 +74,19 @@ extension HomeViewController {
                 self.updateUI(weather: result)
             })
             .disposed(by: self.disposeBag)
+        output.isLoading
+            .drive(onNext: { [weak self] result in
+                guard let self = self else { return }
+                self.showLoading(result)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    func showLoading(_ isLoading: Bool) {
+        UIView.animate(withDuration: 1.0) { [weak self] in
+                        self?.layoutHeader.alpha = isLoading ? 0 : 1
+                        self?.layoutTemps.alpha = isLoading ? 0 : 1
+        }
     }
     
     func updateUI(weather: CurrentWeather) {
@@ -98,12 +100,6 @@ extension HomeViewController {
         if let condition = weather.weather.first?.main {
             landscapeImageView.image = WeatherConditionUtils.conditionToLandscapeImage(condition)
             iconImageView.image = WeatherConditionUtils.conditionToIconImage(condition)
-        }
-        
-        UIView.animate(withDuration: 1.4) { [weak self] in
-            self?.layoutHeader.alpha = 1
-            self?.layoutContents.alpha = 1
-            self?.layoutTemps.alpha = 1
         }
     }
 }

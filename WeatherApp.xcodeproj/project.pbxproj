@@ -22,9 +22,9 @@
 		71FF0102230581D70071F9DF /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF0101230581D70071F9DF /* Wind.swift */; };
 		71FF0104230582030071F9DF /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF0103230582030071F9DF /* Weather.swift */; };
 		71FF0106230582250071F9DF /* WeatherMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF0105230582250071F9DF /* WeatherMain.swift */; };
-		71FF0108230590D20071F9DF /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF0107230590D20071F9DF /* HomeModel.swift */; };
+		71FF0108230590D20071F9DF /* HomeWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF0107230590D20071F9DF /* HomeWeatherModel.swift */; };
 		71FF010A230591150071F9DF /* HomeTemperatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF0109230591150071F9DF /* HomeTemperatureModel.swift */; };
-		71FF010C230591200071F9DF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF010B230591200071F9DF /* HomeViewModel.swift */; };
+		71FF010C230591200071F9DF /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF010B230591200071F9DF /* HomeWeatherViewModel.swift */; };
 		71FF010E2305912E0071F9DF /* HomeTemperatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF010D2305912E0071F9DF /* HomeTemperatureViewModel.swift */; };
 		71FF0110230591410071F9DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF010F230591410071F9DF /* BaseViewController.swift */; };
 		71FF01122305918F0071F9DF /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF01112305918F0071F9DF /* Storyboardable.swift */; };
@@ -75,9 +75,9 @@
 		71FF0101230581D70071F9DF /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 		71FF0103230582030071F9DF /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		71FF0105230582250071F9DF /* WeatherMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMain.swift; sourceTree = "<group>"; };
-		71FF0107230590D20071F9DF /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		71FF0107230590D20071F9DF /* HomeWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherModel.swift; sourceTree = "<group>"; };
 		71FF0109230591150071F9DF /* HomeTemperatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTemperatureModel.swift; sourceTree = "<group>"; };
-		71FF010B230591200071F9DF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		71FF010B230591200071F9DF /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
 		71FF010D2305912E0071F9DF /* HomeTemperatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTemperatureViewModel.swift; sourceTree = "<group>"; };
 		71FF010F230591410071F9DF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		71FF01112305918F0071F9DF /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		71FF012A23068EF60071F9DF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				71FF010B230591200071F9DF /* HomeViewModel.swift */,
+				71FF010B230591200071F9DF /* HomeWeatherViewModel.swift */,
 				71FF010D2305912E0071F9DF /* HomeTemperatureViewModel.swift */,
 			);
 			path = Home;
@@ -309,7 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				71FF00E523044C1F0071F9DF /* Network */,
-				71FF0107230590D20071F9DF /* HomeModel.swift */,
+				71FF0107230590D20071F9DF /* HomeWeatherModel.swift */,
 				71FF0109230591150071F9DF /* HomeTemperatureModel.swift */,
 			);
 			path = Model;
@@ -458,14 +458,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40DA73122FACB130094A047 /* Temperature+Utils.swift in Sources */,
-				71FF010C230591200071F9DF /* HomeViewModel.swift in Sources */,
+				71FF010C230591200071F9DF /* HomeWeatherViewModel.swift in Sources */,
 				A467D66422FA99DE00557B2D /* Configuration.swift in Sources */,
 				71FF01002305816E0071F9DF /* ForecastParams.swift in Sources */,
 				71FF00FE2305811C0071F9DF /* CurrentParams.swift in Sources */,
 				71FF0110230591410071F9DF /* BaseViewController.swift in Sources */,
 				71FF010E2305912E0071F9DF /* HomeTemperatureViewModel.swift in Sources */,
 				71FF01162305995E0071F9DF /* WeatherAppAPIProvider.swift in Sources */,
-				71FF0108230590D20071F9DF /* HomeModel.swift in Sources */,
+				71FF0108230590D20071F9DF /* HomeWeatherModel.swift in Sources */,
 				71FF00E0230449120071F9DF /* HomeTemperatureCollectionViewController.swift in Sources */,
 				71FF01212305C1C20071F9DF /* ForecastWeather.swift in Sources */,
 				A467D66722FAAAEC00557B2D /* GradientView.swift in Sources */,

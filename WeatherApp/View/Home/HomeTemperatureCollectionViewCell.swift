@@ -38,6 +38,8 @@ class HomeTemperatureCollectionViewCell: UICollectionViewCell {
         
         if let weather = weather {
             iconImageView.image = WeatherConditionUtils.weatherToIconImage(weather)
+        } else {
+            iconImageView.image = nil
         }
     }
 }
