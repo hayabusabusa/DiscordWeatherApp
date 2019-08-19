@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let rootVC = HomeViewController.instance(viewModel: HomeWeatherViewModel())
+        let rootVC = BaseNavigationController(rootViewController: HomeViewController.instance(model: HomeWeatherModelImpl()))
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = rootVC

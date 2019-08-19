@@ -15,7 +15,7 @@ protocol HomeWeatherModel {
     func fetchCurrent() -> Single<CurrentWeather>
 }
 
-struct HomeModelImpl: HomeWeatherModel {
+struct HomeWeatherModelImpl: HomeWeatherModel {
     
     private let provider: MoyaProvider<WeatherAppAPI> = WeatherAppAPIProvider.shered
     

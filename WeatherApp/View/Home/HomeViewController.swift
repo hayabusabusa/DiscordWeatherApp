@@ -32,9 +32,10 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Lifecycle
     
-    static func instance(viewModel: HomeWeatherViewModel) -> HomeViewController {
+    static func instance(model: HomeWeatherModel) -> HomeViewController {
         let homeViewController = HomeViewController.newInstance()
-        homeViewController.viewModel = viewModel
+        homeViewController.viewModel = HomeWeatherViewModel(model: model,
+                                                            wireframe: HomeWireframeImpl(viewController: homeViewController))
         return homeViewController
     }
     
@@ -50,14 +51,19 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController {
     
     func setupUI() {
+        // Navigation
+        navigationItem.title = ""
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings"), style: .plain, target: self, action: nil)
+        
         // View
         layoutHeader.alpha = 0
         layoutContents.alpha = 0
-        //layoutTemps.alpha = 0
         
         // CollectionView
         let tempCollectionVC = HomeTemperatureCollectionViewController
-            .instance(viewModel: HomeTemperatureViewModel(reloadTap: reloadButton.rx.tap.asSignal()))
+            .instance(model: HomeTemperatureModelImpl(), reloadTap: reloadButton.rx.tap.asSignal())
         layoutTemps.addSubview(tempCollectionVC.view)
         addChild(tempCollectionVC)
         tempCollectionVC.didMove(toParent: self)
@@ -71,7 +77,7 @@ extension HomeViewController {
     }
     
     func bindViewModel() {
-        let input = type(of: viewModel).Input(reloadTap: reloadButton.rx.tap.asSignal())
+        let input = type(of: viewModel).Input(settingsTap: navigationItem.rightBarButtonItem!.rx.tap.asSignal(), reloadTap: reloadButton.rx.tap.asSignal())
         let output = viewModel.transform(input: input)
         output.currentWeather
             .drive(onNext: { [weak self] result in

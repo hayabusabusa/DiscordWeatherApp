@@ -16,16 +16,19 @@ final class HomeWeatherViewModel {
     
     private let disposeBag = DisposeBag()
     private let model: HomeWeatherModel
+    private let wireframe: HomeWireframe
     
     // MARK: - Initializer
     
-    init(model: HomeWeatherModel = HomeModelImpl()) {
+    init(model: HomeWeatherModel, wireframe: HomeWireframe) {
         self.model = model
+        self.wireframe = wireframe
     }
 }
 
 extension HomeWeatherViewModel: ViewModelType {
     struct Input {
+        let settingsTap: Signal<Void>
         let reloadTap: Signal<Void>
     }
     struct Output {
@@ -47,6 +50,12 @@ extension HomeWeatherViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
+        input.settingsTap
+            .emit(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.wireframe.showSettings()
+            })
+            .disposed(by: self.disposeBag)
         input.reloadTap
             .emit(onNext: { [weak self] _ in
                 guard let self = self else { return }

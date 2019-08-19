@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71DA4F8A230ACB6200BBC2F6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA4F89230ACB6200BBC2F6 /* SettingsViewController.swift */; };
+		71DA4F8C230ACBE200BBC2F6 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71DA4F8B230ACBE200BBC2F6 /* SettingsViewController.storyboard */; };
+		71DA4F8F230AD28C00BBC2F6 /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA4F8E230AD28C00BBC2F6 /* HomeWireframe.swift */; };
+		71DA4F92230AEA9E00BBC2F6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA4F90230AEA9E00BBC2F6 /* SettingsTableViewCell.swift */; };
+		71DA4F93230AEA9E00BBC2F6 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71DA4F91230AEA9E00BBC2F6 /* SettingsTableViewCell.xib */; };
+		71DA4F95230AED1E00BBC2F6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA4F94230AED1E00BBC2F6 /* Settings.swift */; };
+		71DA4F98230AF64100BBC2F6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA4F97230AF64100BBC2F6 /* SettingsViewModel.swift */; };
+		71DA4F9A230AF68A00BBC2F6 /* SettingsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA4F99230AF68A00BBC2F6 /* SettingsWireframe.swift */; };
 		71FF00E0230449120071F9DF /* HomeTemperatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF00DF230449120071F9DF /* HomeTemperatureCollectionViewController.swift */; };
 		71FF00E2230449F50071F9DF /* HomeTemperatureCollectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71FF00E1230449F50071F9DF /* HomeTemperatureCollectionViewController.storyboard */; };
 		71FF00E8230450CC0071F9DF /* HomeTemperatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF00E6230450CC0071F9DF /* HomeTemperatureCollectionViewCell.swift */; };
@@ -60,6 +68,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		71DA4F89230ACB6200BBC2F6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		71DA4F8B230ACBE200BBC2F6 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
+		71DA4F8E230AD28C00BBC2F6 /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		71DA4F90230AEA9E00BBC2F6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		71DA4F91230AEA9E00BBC2F6 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		71DA4F94230AED1E00BBC2F6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		71DA4F97230AF64100BBC2F6 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		71DA4F99230AF68A00BBC2F6 /* SettingsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWireframe.swift; sourceTree = "<group>"; };
 		71FF00DF230449120071F9DF /* HomeTemperatureCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTemperatureCollectionViewController.swift; sourceTree = "<group>"; };
 		71FF00E1230449F50071F9DF /* HomeTemperatureCollectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTemperatureCollectionViewController.storyboard; sourceTree = "<group>"; };
 		71FF00E6230450CC0071F9DF /* HomeTemperatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTemperatureCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +146,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71DA4F8D230AD27B00BBC2F6 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				71DA4F8E230AD28C00BBC2F6 /* HomeWireframe.swift */,
+				71DA4F99230AF68A00BBC2F6 /* SettingsWireframe.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		71DA4F96230AF62E00BBC2F6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				71DA4F97230AF64100BBC2F6 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		71FF00DE230445DA0071F9DF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +176,11 @@
 		71FF00E323044BA00071F9DF /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				71DA4F94230AED1E00BBC2F6 /* Settings.swift */,
+				71DA4F89230ACB6200BBC2F6 /* SettingsViewController.swift */,
+				71DA4F8B230ACBE200BBC2F6 /* SettingsViewController.storyboard */,
+				71DA4F90230AEA9E00BBC2F6 /* SettingsTableViewCell.swift */,
+				71DA4F91230AEA9E00BBC2F6 /* SettingsTableViewCell.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -176,6 +214,7 @@
 			children = (
 				71FF01222305C4430071F9DF /* ViewModelType.swift */,
 				71FF012A23068EF60071F9DF /* Home */,
+				71DA4F96230AF62E00BBC2F6 /* Settings */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -273,6 +312,7 @@
 				A467D63722FA8C9500557B2D /* AppDelegate.swift */,
 				A467D66322FA99DE00557B2D /* Configuration.swift */,
 				A467D66022FA95C000557B2D /* Model */,
+				71DA4F8D230AD27B00BBC2F6 /* Wireframe */,
 				71FF00F6230573D40071F9DF /* ViewModel */,
 				71FF00DE230445DA0071F9DF /* View */,
 				A467D66522FAAABD00557B2D /* Common */,
@@ -406,10 +446,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71DA4F93230AEA9E00BBC2F6 /* SettingsTableViewCell.xib in Resources */,
 				A467D64222FA8C9700557B2D /* LaunchScreen.storyboard in Resources */,
 				71FF00E9230450CC0071F9DF /* HomeTemperatureCollectionViewCell.xib in Resources */,
 				A467D63F22FA8C9700557B2D /* Assets.xcassets in Resources */,
 				A467D65D22FA92F600557B2D /* HomeViewController.storyboard in Resources */,
+				71DA4F8C230ACBE200BBC2F6 /* SettingsViewController.storyboard in Resources */,
 				71FF00E2230449F50071F9DF /* HomeTemperatureCollectionViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,22 +507,28 @@
 				71FF0110230591410071F9DF /* BaseViewController.swift in Sources */,
 				71FF010E2305912E0071F9DF /* HomeTemperatureViewModel.swift in Sources */,
 				71FF01162305995E0071F9DF /* WeatherAppAPIProvider.swift in Sources */,
+				71DA4F92230AEA9E00BBC2F6 /* SettingsTableViewCell.swift in Sources */,
 				71FF0108230590D20071F9DF /* HomeWeatherModel.swift in Sources */,
 				71FF00E0230449120071F9DF /* HomeTemperatureCollectionViewController.swift in Sources */,
 				71FF01212305C1C20071F9DF /* ForecastWeather.swift in Sources */,
 				A467D66722FAAAEC00557B2D /* GradientView.swift in Sources */,
+				71DA4F8F230AD28C00BBC2F6 /* HomeWireframe.swift in Sources */,
 				71FF01232305C4430071F9DF /* ViewModelType.swift in Sources */,
+				71DA4F98230AF64100BBC2F6 /* SettingsViewModel.swift in Sources */,
 				71FF0106230582250071F9DF /* WeatherMain.swift in Sources */,
 				71FF0104230582030071F9DF /* Weather.swift in Sources */,
 				A40DA72F22FAC7890094A047 /* WeatherCondition+Utils.swift in Sources */,
 				71FF00E8230450CC0071F9DF /* HomeTemperatureCollectionViewCell.swift in Sources */,
 				71FF011F2305B8E30071F9DF /* Forecast.swift in Sources */,
 				71FF010A230591150071F9DF /* HomeTemperatureModel.swift in Sources */,
+				71DA4F95230AED1E00BBC2F6 /* Settings.swift in Sources */,
 				A467D63822FA8C9500557B2D /* AppDelegate.swift in Sources */,
 				71FF01122305918F0071F9DF /* Storyboardable.swift in Sources */,
 				A467D66222FA976E00557B2D /* CurrentWeather.swift in Sources */,
 				71FF0114230591BB0071F9DF /* BaseNavigationController.swift in Sources */,
+				71DA4F8A230ACB6200BBC2F6 /* SettingsViewController.swift in Sources */,
 				A467D65B22FA92D700557B2D /* HomeViewController.swift in Sources */,
+				71DA4F9A230AF68A00BBC2F6 /* SettingsWireframe.swift in Sources */,
 				71FF00FA230574160071F9DF /* WeatherAppAPI.swift in Sources */,
 				71FF0127230663970071F9DF /* Timestamp+Util.swift in Sources */,
 				71FF0102230581D70071F9DF /* Wind.swift in Sources */,

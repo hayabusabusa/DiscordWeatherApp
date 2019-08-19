@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxCocoa
 
 final class HomeTemperatureCollectionViewController: BaseViewController {
     
@@ -26,9 +27,9 @@ final class HomeTemperatureCollectionViewController: BaseViewController {
 
     // MARK: - Lifecycle
     
-    static func instance(viewModel: HomeTemperatureViewModel) -> HomeTemperatureCollectionViewController {
+    static func instance(model: HomeTemperatureModel, reloadTap: Signal<Void>) -> HomeTemperatureCollectionViewController {
         let homeTemperatureCollectionViewController = HomeTemperatureCollectionViewController.newInstance()
-        homeTemperatureCollectionViewController.viewModel = viewModel
+        homeTemperatureCollectionViewController.viewModel = HomeTemperatureViewModel(model: model, reloadTap: reloadTap)
         return homeTemperatureCollectionViewController
     }
     

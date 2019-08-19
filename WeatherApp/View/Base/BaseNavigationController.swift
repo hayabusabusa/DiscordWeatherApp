@@ -27,7 +27,7 @@ class BaseNavigationController: UINavigationController {
     private func setupUI() {
         navigationBar.shadowImage = UIImage()
         navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.tintColor = UIColor(red: 43 / 255, green: 155 / 255, blue: 83 / 255, alpha: 1)
+        navigationBar.tintColor = .black
     }
     
     func updateStyle(_ viewController: UIViewController) {

@@ -12,4 +12,5 @@ struct Configuration {
     
     static let baseUrl: String = "http://api.openweathermap.org/data/2.5"
     static let apiKey: String = "393efb70e6ed85dd67a9935886062826"
+    static let githubUrl: String = "https://github.com/hayabusabusa/DiscordWeatherApp"
 }
