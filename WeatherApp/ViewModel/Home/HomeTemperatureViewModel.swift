@@ -34,13 +34,16 @@ extension HomeTemperatureViewModel: ViewModelType {
     }
     struct Output {
         let forecastWeather: Driver<ForecastWeather>
+        let isLoading: Driver<Bool>
     }
     
     func transform(input: HomeTemperatureViewModel.Input) -> HomeTemperatureViewModel.Output {
         let forecastWeatherRelay: BehaviorRelay<ForecastWeather> = .init(value: ForecastWeather(list: []))
+        let isLoading: BehaviorRelay<Bool> = .init(value: true)
         
         model.fetchForecast()
             .subscribe(onSuccess: { result in
+                isLoading.accept(false)
                 forecastWeatherRelay.accept(result)
             }, onError: { error in
                 print(error)
@@ -50,8 +53,10 @@ extension HomeTemperatureViewModel: ViewModelType {
         self.reloadTap
             .emit(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                isLoading.accept(true)
                 self.model.fetchForecast()
                     .subscribe(onSuccess: { result in
+                        isLoading.accept(false)
                         forecastWeatherRelay.accept(result)
                     }, onError: { error in
                         print(error)
@@ -60,6 +65,6 @@ extension HomeTemperatureViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        return Output(forecastWeather: forecastWeatherRelay.asDriver())
+        return Output(forecastWeather: forecastWeatherRelay.asDriver(), isLoading: isLoading.asDriver())
     }
 }

@@ -12,6 +12,7 @@ final class HomeTemperatureCollectionViewController: BaseViewController {
     
     // MARK: - IBOutlet
     
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Properties
@@ -67,6 +68,22 @@ extension HomeTemperatureCollectionViewController {
                 self.dataSource = result
             })
             .disposed(by: self.disposeBag)
+        output.isLoading
+            .drive(onNext: { [weak self] result in
+                guard let self = self else { return }
+                self.showLoading(result)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    func showLoading(_ isLoading: Bool) {
+        collectionView.isHidden = isLoading
+        indicatorView.isHidden = !isLoading
+        if isLoading {
+            indicatorView.startAnimating()
+        } else {
+            indicatorView.stopAnimating()
+        }
     }
 }
 

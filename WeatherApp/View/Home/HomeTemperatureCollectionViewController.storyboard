@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EYd-XR-lEt">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rZ3-QQ-agM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,12 +38,15 @@
                             <constraint firstItem="h7b-oT-ERS" firstAttribute="trailing" secondItem="rZ3-QQ-agM" secondAttribute="trailing" id="1zp-pI-uA2"/>
                             <constraint firstItem="rZ3-QQ-agM" firstAttribute="top" secondItem="h7b-oT-ERS" secondAttribute="top" id="35O-Q3-GwF"/>
                             <constraint firstItem="rZ3-QQ-agM" firstAttribute="leading" secondItem="h7b-oT-ERS" secondAttribute="leading" id="UZk-sF-r8S"/>
+                            <constraint firstItem="EYd-XR-lEt" firstAttribute="centerX" secondItem="I2W-qy-QNy" secondAttribute="centerX" id="lXa-RG-LCc"/>
                             <constraint firstItem="h7b-oT-ERS" firstAttribute="bottom" secondItem="rZ3-QQ-agM" secondAttribute="bottom" id="mVY-Qc-9X0"/>
+                            <constraint firstItem="EYd-XR-lEt" firstAttribute="centerY" secondItem="I2W-qy-QNy" secondAttribute="centerY" id="xb6-W5-hL7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h7b-oT-ERS"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="rZ3-QQ-agM" id="bYh-MK-gFA"/>
+                        <outlet property="indicatorView" destination="EYd-XR-lEt" id="czr-F9-eyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s71-Y7-Hdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
