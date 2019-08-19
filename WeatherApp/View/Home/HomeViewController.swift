@@ -50,6 +50,11 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController {
     
     func setupUI() {
+        // View
+        layoutHeader.alpha = 0
+        layoutContents.alpha = 0
+        //layoutTemps.alpha = 0
+        
         // CollectionView
         let tempCollectionVC = HomeTemperatureCollectionViewController
             .instance(viewModel: HomeTemperatureViewModel(reloadTap: reloadButton.rx.tap.asSignal()))
@@ -85,12 +90,12 @@ extension HomeViewController {
     func showLoading(_ isLoading: Bool) {
         UIView.animate(withDuration: 1.0) { [weak self] in
                         self?.layoutHeader.alpha = isLoading ? 0 : 1
-                        self?.layoutTemps.alpha = isLoading ? 0 : 1
+                        self?.layoutContents.alpha = isLoading ? 0 : 1
         }
     }
     
     func updateUI(weather: CurrentWeather) {
-        temperatureLabel.text = String(format: "%.1f", TemperatureUtils.fahrenheitToCelsius(weather.main.temp))
+        temperatureLabel.text = String(format: "%.1f°", TemperatureUtils.fahrenheitToCelsius(weather.main.temp))
         weatherLabel.text = weather.weather.first?.desc ?? "unknown"
         minLabel.text = String(format: "%.1f", TemperatureUtils.fahrenheitToCelsius(weather.main.tempMin))
         maxLabel.text = String(format: "%.1f", TemperatureUtils.fahrenheitToCelsius(weather.main.tempMax))

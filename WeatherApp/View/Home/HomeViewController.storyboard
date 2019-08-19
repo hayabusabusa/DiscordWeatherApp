@@ -379,8 +379,9 @@ temperature</string>
                         <outlet property="humidityLabel" destination="3Gz-wH-lUT" id="gdN-P9-Hvi"/>
                         <outlet property="iconImageView" destination="Vc9-01-U8X" id="NmR-KW-zwk"/>
                         <outlet property="landscapeImageView" destination="2fd-XN-Rt6" id="qQQ-Sz-19z"/>
-                        <outlet property="layoutContents" destination="gyh-KV-ylH" id="3ik-Yv-3xz"/>
+                        <outlet property="layoutContents" destination="gyh-KV-ylH" id="S3U-5h-zF7"/>
                         <outlet property="layoutHeader" destination="k4Q-aG-HkS" id="SrF-YW-umm"/>
+                        <outlet property="layoutTemps" destination="X9i-eY-nmb" id="9Kt-Wa-cJr"/>
                         <outlet property="maxLabel" destination="GGn-Hp-Kp7" id="wV9-kF-g4E"/>
                         <outlet property="minLabel" destination="YiD-KI-s2b" id="SKU-8C-6RP"/>
                         <outlet property="reloadButton" destination="2UF-NR-HMs" id="5eo-fM-iCA"/>
