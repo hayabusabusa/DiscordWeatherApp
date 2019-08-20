@@ -20,7 +20,7 @@ struct HomeTemperatureModelImpl: HomeTemperatureModel {
     private let provider: MoyaProvider<WeatherAppAPI> = WeatherAppAPIProvider.shered
     
     func fetchForecast() -> Single<ForecastWeather> {
-        return provider.rx.request(.forecast(with: ForecastParams(cityName: "Toyota,jp")))
+        return provider.rx.request(.forecast(with: ForecastParams(cityName: LocalSettigs.getCurrentLocation() ?? Configuration.defaultLocation)))
             .filterSuccessfulStatusCodes()
             .map(ForecastWeather.self)
     }

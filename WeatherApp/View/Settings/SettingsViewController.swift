@@ -84,7 +84,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch settings[indexPath.section].items[indexPath.row] {
         case .nowLocation:
-            cell.setupCell(title: "Now location", content: "Toyota.jp")
+            // TODO: viewModel
+            cell.setupCell(title: "Now location", content: LocalSettigs.getCurrentLocation() ?? Configuration.defaultLocation)
         case .setLocation:
             cell.setupCell(title: "Set special location", content: nil)
         case .updateLocation:

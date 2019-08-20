@@ -55,6 +55,7 @@
 		A467D66222FA976E00557B2D /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467D66122FA976D00557B2D /* CurrentWeather.swift */; };
 		A467D66422FA99DE00557B2D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467D66322FA99DE00557B2D /* Configuration.swift */; };
 		A467D66722FAAAEC00557B2D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467D66622FAAAEC00557B2D /* GradientView.swift */; };
+		A495FF43230BCBA40073F23E /* LocalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A495FF42230BCBA40073F23E /* LocalSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		A467D66122FA976D00557B2D /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		A467D66322FA99DE00557B2D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A467D66622FAAAEC00557B2D /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		A495FF42230BCBA40073F23E /* LocalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +313,7 @@
 			children = (
 				A467D63722FA8C9500557B2D /* AppDelegate.swift */,
 				A467D66322FA99DE00557B2D /* Configuration.swift */,
+				A495FF42230BCBA40073F23E /* LocalSettings.swift */,
 				A467D66022FA95C000557B2D /* Model */,
 				71DA4F8D230AD27B00BBC2F6 /* Wireframe */,
 				71FF00F6230573D40071F9DF /* ViewModel */,
@@ -509,6 +512,7 @@
 				71FF01162305995E0071F9DF /* WeatherAppAPIProvider.swift in Sources */,
 				71DA4F92230AEA9E00BBC2F6 /* SettingsTableViewCell.swift in Sources */,
 				71FF0108230590D20071F9DF /* HomeWeatherModel.swift in Sources */,
+				A495FF43230BCBA40073F23E /* LocalSettings.swift in Sources */,
 				71FF00E0230449120071F9DF /* HomeTemperatureCollectionViewController.swift in Sources */,
 				71FF01212305C1C20071F9DF /* ForecastWeather.swift in Sources */,
 				A467D66722FAAAEC00557B2D /* GradientView.swift in Sources */,
