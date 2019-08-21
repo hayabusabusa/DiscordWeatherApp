@@ -8,6 +8,7 @@
 
 import UIKit
 import RxCocoa
+import CoreLocation
 
 final class SettingsViewController: BaseViewController {
     
@@ -20,6 +21,7 @@ final class SettingsViewController: BaseViewController {
     private var viewModel: SettingsViewModel!
     
     private let cellTapRelay: PublishRelay<Setting> = .init()
+    private let locationManager: CLLocationManager = .init()
     private let settings: [Settings] = [
         Settings(desc: "Location settings", items: [.nowLocation, .setLocation, .updateLocation]),
         Settings(desc: "About this application", items: [.version, .about])
@@ -50,6 +52,10 @@ extension SettingsViewController {
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        // CoreLocation
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
         // TableView
         tableView.dataSource = self
         tableView.delegate = self
@@ -60,6 +66,19 @@ extension SettingsViewController {
     func bindViewModel() {
         let input = type(of: viewModel).Input(cellTap: cellTapRelay)
         _ = viewModel.transform(input: input)
+    }
+}
+
+// MARK: - CoreLocation delegate
+
+extension SettingsViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }
 
@@ -100,6 +119,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        locationManager.requestLocation()
         cellTapRelay.accept(settings[indexPath.section].items[indexPath.row])
     }
 }
