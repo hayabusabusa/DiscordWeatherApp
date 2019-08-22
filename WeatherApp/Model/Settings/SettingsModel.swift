@@ -56,5 +56,8 @@ struct SettingsModelImpl: SettingsModel {
                 self.provider.requestLocation()
                 return self.provider.locationSubject.asObserver()
             }
+            .do(onNext: { location in
+                LocalSettigs.saveLocation(latitude: location.latitude, longitude: location.longitude)
+            })
     }
 }
