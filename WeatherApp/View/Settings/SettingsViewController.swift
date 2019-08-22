@@ -21,6 +21,7 @@ final class SettingsViewController: BaseViewController {
     private var viewModel: SettingsViewModel!
     
     private let cellTapRelay: PublishRelay<Setting> = .init()
+    private var currentLocation: String = Configuration.defaultLocation
     private let settings: [Settings] = [
         Settings(desc: "Location settings", items: [.nowLocation, .setLocation, .updateLocation]),
         Settings(desc: "About this application", items: [.version, .about])
@@ -61,6 +62,13 @@ extension SettingsViewController {
     func bindViewModel() {
         let input = type(of: viewModel).Input(cellTap: cellTapRelay)
         let output = viewModel.transform(input: input)
+        output.currentLocation
+            .drive(onNext: { [weak self] currentLocation in
+                guard let self = self else { return }
+                self.currentLocation = currentLocation
+                self.tableView.reloadData()
+            })
+            .disposed(by: self.disposeBag)
         output.onError
             .drive(onNext: { [weak self] reason in
                 guard let self = self else { return }
@@ -94,13 +102,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         switch settings[indexPath.section].items[indexPath.row] {
         case .nowLocation:
             // TODO: viewModel
-            cell.setupCell(title: "Now location", content: LocalSettigs.getCurrentLocation() ?? Configuration.defaultLocation)
+            cell.setupCell(title: "Now location", content: currentLocation)
         case .setLocation:
             cell.setupCell(title: "Set special location", content: nil)
         case .updateLocation:
             cell.setupCell(title: "Update location", content: nil)
         case .version:
-            cell.setupCell(title: "Version", content: "0.01(beta)")
+            cell.setupCell(title: "Version", content: "beta")
         case .about:
             cell.setupCell(title: "About this app", content: nil)
         }

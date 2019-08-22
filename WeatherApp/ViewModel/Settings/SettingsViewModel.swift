@@ -31,18 +31,30 @@ extension SettingsViewModel: ViewModelType {
         let cellTap: PublishRelay<Setting>
     }
     struct Output {
+        let currentLocation: Driver<String>
         let onError: Driver<String>
     }
     
     func transform(input: SettingsViewModel.Input) -> SettingsViewModel.Output {
+        let currentLocation: BehaviorRelay<String> = .init(value: Configuration.defaultLocation)
         let onError: PublishRelay<String> = .init()
+        
+        model.getCurrentLocation()
+            .subscribe(onSuccess: { cityName in
+                currentLocation.accept(cityName)
+            })
+            .disposed(by: disposeBag)
         
         input.cellTap
             .subscribe(onNext: { [weak self] setting in
                 guard let self = self else { return }
                 switch setting {
-                case .about:
-                    self.wireframe.showUrl(url: Configuration.githubUrl)
+                case .setLocation:
+                    self.model.getSpecialLocation()
+                        .subscribe(onSuccess: { cityName in
+                            currentLocation.accept(cityName)
+                        })
+                        .disposed(by: self.disposeBag)
                 case .updateLocation:
                     self.model.updateLoaction()
                         .subscribe(onNext: { location in
@@ -55,12 +67,15 @@ extension SettingsViewModel: ViewModelType {
                             }
                         })
                         .disposed(by: self.disposeBag)
+                case .about:
+                    self.wireframe.showUrl(url: Configuration.githubUrl)
                 default:
                     return
                 }
             })
             .disposed(by: disposeBag)
         
-        return Output(onError: onError.asDriver(onErrorJustReturn: "Something wrong."))
+        return Output(currentLocation: currentLocation.asDriver(),
+                      onError: onError.asDriver(onErrorJustReturn: "Something wrong."))
     }
 }

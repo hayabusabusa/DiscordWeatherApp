@@ -10,7 +10,9 @@ import Foundation
 import RxSwift
 
 protocol SettingsModel {
-    func getLocation() -> Single<String>
+    func getCurrentLocation() -> Single<String>
+    func getSpecialLocation() -> Single<String>
+    func saveCurrentLocation(_ cityName: String) -> Completable
     func updateLoaction() -> Observable<Location>
 }
 
@@ -18,13 +20,30 @@ struct SettingsModelImpl: SettingsModel {
     
     private let provider: LocationProvider = LocationProvider.shered
     
-    func getLocation() -> Single<String> {
+    func getCurrentLocation() -> Single<String> {
         return Single.create { observer in
             if let current = LocalSettigs.getCurrentLocation() {
                 observer(.success(current))
             } else {
                 observer(.success(Configuration.defaultLocation))
             }
+            return Disposables.create()
+        }
+    }
+    
+    func getSpecialLocation() -> Single<String> {
+        return Single.create { observer in
+            let specialLocation = SpecialLocationUtils.getSpecialLocation()
+            LocalSettigs.saveCurrentLocation(specialLocation)
+            observer(.success(specialLocation))
+            return Disposables.create()
+        }
+    }
+    
+    func saveCurrentLocation(_ cityName: String) -> Completable {
+        return Completable.create { observer in
+            LocalSettigs.saveCurrentLocation(cityName)
+            observer(.completed)
             return Disposables.create()
         }
     }
