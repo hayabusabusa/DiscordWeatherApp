@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: Fix settings
 struct Settings {
     let desc: String
     let items: [Setting]
